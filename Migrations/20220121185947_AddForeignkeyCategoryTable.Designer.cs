@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Eterna.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220121130206_cr")]
-    partial class cr
+    [Migration("20220121185947_AddForeignkeyCategoryTable")]
+    partial class AddForeignkeyCategoryTable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,26 @@ namespace Eterna.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.13")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("Eterna.Models.Category", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PortfolioId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PortfolioId");
+
+                    b.ToTable("Categories");
+                });
 
             modelBuilder.Entity("Eterna.Models.Client", b =>
                 {
@@ -140,6 +160,17 @@ namespace Eterna.Migrations
                     b.ToTable("Sliders");
                 });
 
+            modelBuilder.Entity("Eterna.Models.Category", b =>
+                {
+                    b.HasOne("Eterna.Models.Portfolio", "Portfolio")
+                        .WithMany("Categories")
+                        .HasForeignKey("PortfolioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Portfolio");
+                });
+
             modelBuilder.Entity("Eterna.Models.Portfolioimage", b =>
                 {
                     b.HasOne("Eterna.Models.Portfolio", "Portfolio")
@@ -153,6 +184,8 @@ namespace Eterna.Migrations
 
             modelBuilder.Entity("Eterna.Models.Portfolio", b =>
                 {
+                    b.Navigation("Categories");
+
                     b.Navigation("Portfolioimages");
                 });
 #pragma warning restore 612, 618

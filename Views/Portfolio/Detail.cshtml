@@ -45,8 +45,11 @@
                     <div class="portfolio-info">
                         <h3>@Model.Name</h3>
                         <ul>
-                          
-                            <li><strong>Category</strong> :Web,Programming</li>
+                          @foreach(Category category in Model.Categories)
+                          {
+                            <li><strong>Category</strong> :@category.Name </li>
+                          }
+                            
                            
 
                             <li><strong>Client</strong>: @Model.Client</li>

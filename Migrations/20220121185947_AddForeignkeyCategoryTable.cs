@@ -2,7 +2,7 @@
 
 namespace Eterna.Migrations
 {
-    public partial class createProject : Migration
+    public partial class AddForeignkeyCategoryTable : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

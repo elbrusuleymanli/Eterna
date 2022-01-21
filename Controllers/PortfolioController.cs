@@ -25,7 +25,7 @@ namespace Eterna.Controllers
         }
         public IActionResult Detail(int id)
         {
-            Portfolio portfolio = _context.Portfolios.Include(p=>p.Portfolioimages).FirstOrDefault(p => p.Id == id);
+            Portfolio portfolio = _context.Portfolios.Include(p=>p.Portfolioimages).Include(p=>p.Categories).FirstOrDefault(p => p.Id == id);
             if (portfolio==null)
             {
                 return NotFound();

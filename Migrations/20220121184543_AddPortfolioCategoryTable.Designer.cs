@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Eterna.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220121125120_categor")]
-    partial class categor
+    [Migration("20220121184543_AddPortfolioCategoryTable")]
+    partial class AddPortfolioCategoryTable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

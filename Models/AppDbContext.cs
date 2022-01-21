@@ -16,7 +16,8 @@ namespace Eterna.Models
         public DbSet<Portfolio> Portfolios { get; set; }
         public DbSet<Portfolioimage> Portfolioimages { get; set; }
         public DbSet<Client> Clients { get; set; }
-     
+        public DbSet<Category>Categories { get; set; }
+
 
     }
 }

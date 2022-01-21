@@ -19,9 +19,10 @@ namespace Eterna.Models
         [StringLength(maximumLength:500)]
         public string Desc { get; set; }
         public string Name { get; set; }
-        public List<Portfolioimage> Portfolioimages { get; set; }
-     
+        public ICollection<Portfolioimage> Portfolioimages { get; set; }
+        public ICollection<Category> Categories { get; set; }
 
+        
 
     }
 }
